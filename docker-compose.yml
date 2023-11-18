@@ -12,8 +12,8 @@ services:
       - ./src:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     depends_on:
-      - app
-      - db
+      - product_app
+      - product_db
 
   #Database Service
   # db:
@@ -26,21 +26,21 @@ services:
   #   environment:
   #     MYSQL_DATABASE: blog
   #     MYSQL_ROOT_PASSWORD: password
-  db:
+  product_db:
     image: postgres
-    container_name: postgres
+    container_name: product_db
     volumes:
       - ./postgresql/data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment: 
-      POSTGRES_DB: blog
+      POSTGRES_DB: product
       POSTGRES_USER: root 
       POSTGRES_PASSWORD: password 
 
   # Application Service
-  app:
-    container_name: blog
+  product_app:
+    container_name: product_app
     build: 
       context: ./php
       dockerfile: Dockerfile
@@ -64,7 +64,7 @@ services:
     ports:
       - "5050:80"
     depends_on:
-      - db 
+      - product_db
     environment:
-      PGADMIN_DEFAULT_EMAIL: hanieasemi76@gmail.com
+      PGADMIN_DEFAULT_EMAIL: citrussok@gmail.com
       PGADMIN_DEFAULT_PASSWORD: password 
