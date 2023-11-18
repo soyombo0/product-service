@@ -39,12 +39,3 @@ Setting up Laravel in the local environment with Docker using the LEMP stack tha
 1. ```cd src```
 2. ```docker-compose exec app php artisan {your command}``` 
 
-## Medium
-
-https://medium.com/@hanieasemi/setting-up-a-laravel-local-environment-with-docker-7541ae170daf
-
-## YouTube 
-
-https://www.youtube.com/watch?v=6ANYowpB910
-
-https://www.youtube.com/watch?v=gZfCAIGsz_o
