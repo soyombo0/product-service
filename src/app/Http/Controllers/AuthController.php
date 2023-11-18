@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -62,11 +61,6 @@ class AuthController extends Controller
         ]);
     }
 
-    public function user(Request $request)
-    {
-        return response()->json($request->user());
-    }
-
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
@@ -77,9 +71,4 @@ class AuthController extends Controller
 
     }
 
-
-    public function test()
-    {
-        return 'test';
-    }
 }

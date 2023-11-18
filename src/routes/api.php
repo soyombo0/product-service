@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,17 @@ Route::prefix('auth')->group(function(Router $router) {
     $router->post('/register', [AuthController::class, 'register']);
     $router->post('/login', [AuthController::class, 'login']);
     $router->get('/logout', [AuthController::class, 'logout']);
-    $router->get('/user', [AuthController::class, 'user']);
 });
 
 Route::middleware('auth:sanctum')->group(function(Router $router) {
     $router->apiResources([
         'products' => 'ProductController',
     ]);
+
+    # User Related Routes
+    $router->put('user/update/{userId}', [UserController::class, 'updateName']);
+    $router->get('user/show/{userId}', [UserController::class, 'show']);
+    $router->post('user/store-avatar', [UserController::class, 'storeAvatar']);
+    $router->get('user/show-avatar/{userId}', [UserController::class, 'showAvatar']);
 });
 
