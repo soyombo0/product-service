@@ -25,6 +25,7 @@ Route::prefix('auth')->group(function(Router $router) {
 Route::middleware('auth:sanctum')->group(function(Router $router) {
     $router->apiResources([
         'products' => 'ProductController',
+        'orders' => 'OrderController'
     ]);
 
     # User Related Routes

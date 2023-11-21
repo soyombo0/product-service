@@ -11,17 +11,9 @@ class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|unique:users',
-            'password' => 'required|string',
-        ]);
+        $data = $request->validated();
 
-        $user = new User([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+        $user = User::query()->create($data);
 
         if ($user->save()) {
             $tokenResult = $user->createToken('Personal Access Token');
