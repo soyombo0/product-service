@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,9 @@ Route::middleware('auth:sanctum')->group(function(Router $router) {
     $router->get('user/show/{userId}', [UserController::class, 'show']);
     $router->post('user/store-avatar', [UserController::class, 'storeAvatar']);
     $router->get('user/show-avatar/{userId}', [UserController::class, 'showAvatar']);
+
+    # Chat Related Routes
+    $router->get('chat/create-convo', [ChatController::class, 'createConvo']);
+    $router->post('chat/send', [ChatController::class, 'sendMessage']);
 });
 
