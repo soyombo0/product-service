@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/redis', fn () => Cache::put('key', 'value', 60));
+Route::get('/redis/get', fn () => Cache::get('key'));
+
 Route::prefix('auth')->group(function(Router $router) {
     $router->post('/register', [AuthController::class, 'register']);
     $router->post('/login', [AuthController::class, 'login']);

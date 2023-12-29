@@ -1,0 +1,6 @@
+
+Vdocker:S6597"9WORKDIR instruction should be used instead of cd command.(‘è·£ûÿÿÿÿ
+Tdocker:S6595"<Update cache and install packages in single RUN instruction.(Á¦¤µ
+Ddocker:S6587"'Remove cache after installing packages.(Êå«øþÿÿÿÿ
+Ddocker:S6587"'Remove cache after installing packages.(ÑùðÃøÿÿÿÿ
+?docker:S65875"'Remove cache after installing packages.(¨²¿“

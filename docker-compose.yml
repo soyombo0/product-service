@@ -14,6 +14,8 @@ services:
     depends_on:
       - product_app
       - product_db
+    networks:
+      - backend
 
   #Database Service
   # db:
@@ -36,35 +38,32 @@ services:
     environment: 
       POSTGRES_DB: product
       POSTGRES_USER: root 
-      POSTGRES_PASSWORD: password 
+      POSTGRES_PASSWORD: password
+    networks:
+      - backend
 
   # Application Service
   product_app:
     container_name: product_app
     build: 
-      context: ./php
-      dockerfile: Dockerfile
+      context: php
+      dockerfile: php/Dockerfile
     volumes:
       - ./src:/var/www
     ports:
       - "9000:9000"
     working_dir: /var/www
+    networks:
+      - backend
 
-  #phpMyAdmin Service
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: phpmyadmin
-  #   ports:
-  #     - "3400:80"
-  #   depends_on:
-  #     - db
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgAdmin
+  # Redis Service
+  redis:
+    image: redis:latest
     ports:
-      - "5050:80"
+      - "6379:6379"
     depends_on:
-      - product_db
-    environment:
-      PGADMIN_DEFAULT_EMAIL: citrussok@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: password 
+      - product_app
+    networks:
+      - backend
+networks:
+  backend:

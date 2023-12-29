@@ -11,7 +11,6 @@ class ChatController extends Controller
     {
         $user = auth()->user();
         $conversation = Chat::createConversation([$user]);
-
         return $conversation->getParticipants();
     }
 
@@ -23,7 +22,6 @@ class ChatController extends Controller
             ->from(auth()->user())
             ->to($conversation)
             ->send();
-
         return Chat::conversation($conversation)->setParticipant(auth()->user())->getMessages();
     }
 
