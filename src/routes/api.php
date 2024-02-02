@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ChatController;
+use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\ChatController;
+use App\Http\Controllers\API\V1\OAuthController;
+use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -17,29 +18,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/redis', fn () => Cache::put('key', 'value', 60));
-Route::get('/redis/get', fn () => Cache::get('key'));
-
 Route::prefix('auth')->group(function(Router $router) {
     $router->post('/register', [AuthController::class, 'register']);
     $router->post('/login', [AuthController::class, 'login']);
     $router->get('/logout', [AuthController::class, 'logout']);
+    $router->get('/telegram', [OAuthController::class, 'telegram']);
+    $router->get('/telegram/redirect', [OAuthController::class, 'telegramRedirect']);
 });
+
+Route::get('user/show/{userId}', [UserController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function(Router $router) {
     $router->apiResources([
-        'products' => 'ProductController',
-        'orders' => 'OrderController'
+        'products' => 'API\V1\ProductController',
+        'orders' => 'API\V1\OrderController'
     ]);
 
     # User Related Routes
     $router->put('user/update/{userId}', [UserController::class, 'updateName']);
     $router->get('user/show/{userId}', [UserController::class, 'show']);
+    $router->get('user/index', [UserController::class, 'index']);
     $router->post('user/store-avatar', [UserController::class, 'storeAvatar']);
     $router->get('user/show-avatar/{userId}', [UserController::class, 'showAvatar']);
-
-    # Chat Related Routes
-    $router->get('chat/create-convo', [ChatController::class, 'createConvo']);
-    $router->post('chat/send', [ChatController::class, 'sendMessage']);
 });
 

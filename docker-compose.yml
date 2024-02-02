@@ -47,7 +47,7 @@ services:
     container_name: product_app
     build: 
       context: php
-      dockerfile: php/Dockerfile
+#      dockerfile: ./php/Dockerfile
     volumes:
       - ./src:/var/www
     ports:

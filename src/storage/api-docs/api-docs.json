@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Efriend API",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "ayesoyombo@gmail.com"
+        },
+        "version": "1.0.0",
+        "x-logo": {
+            "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api/v1",
+            "description": "Efriend API Server"
+        }
+    ],
+    "paths": {
+        "/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of products",
+                "description": "Returns list of products",
+                "operationId": "getProducts",
+                "responses": {
+                    "200": {
+                        "description": "An example endpoint"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Store product",
+                "description": "Store in a product in app",
+                "operationId": "postProducts",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "An example endpoint"
+                    }
+                }
+            }
+        },
+        "/product/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get a certain product",
+                "description": "Get a certain product in app",
+                "operationId": "showProducts",
+                "responses": {
+                    "200": {
+                        "description": "An example endpoint"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update a certain product",
+                "description": "Update a certain product in app",
+                "operationId": "updateProducts",
+                "responses": {
+                    "200": {
+                        "description": "An example endpoint"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Delete a certain product",
+                "description": "Delete a certain product in app",
+                "operationId": "deleteProducts",
+                "responses": {
+                    "200": {
+                        "description": "An example endpoint"
+                    }
+                }
+            }
+        }
+    }
+}
