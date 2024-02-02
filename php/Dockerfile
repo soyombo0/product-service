@@ -31,7 +31,7 @@ RUN apt-get -y install --fix-missing \
     libicu-dev \
     libonig-dev \
     libxml2-dev
-    
+
 # RUN echo "\e[1;33mInstall important docker dependencies\e[0m"
 # RUN docker-php-ext-install \
 #     exif \
