@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+
+  # Web Server Service
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - product_app
+      - product_db
+    networks:
+      - backend
+
+  #Database Service
+  # db:
+  #   image : mysql
+  #   container_name : mysql
+  #   volumes:
+  #     - ./mysql/data:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_DATABASE: blog
+  #     MYSQL_ROOT_PASSWORD: password
+  product_db:
+    image: postgres
+    container_name: product_db
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: product
+      POSTGRES_USER: soy
+      POSTGRES_PASSWORD: soy123
+    networks:
+      - backend
+
+  # Application Service
+  product_app:
+    container_name: product_app
+    build:
+      context: ./php
+      network: host
+    volumes:
+      - ./src:/var/www
+    ports:
+      - "9000:9000"
+    working_dir: /var/www
+    networks:
+      - backend
+
+  # Redis Service
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    depends_on:
+      - product_app
+    networks:
+      - backend
+networks:
+  backend:
