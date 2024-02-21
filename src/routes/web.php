@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/chat', [ChatController::class, 'index']);
+Route::get('/', [ChatController::class, 'index']);
 Route::post('/broadcast', [ChatController::class, 'broadcast']);
 Route::post('/receive', [ChatController::class, 'receive']);
