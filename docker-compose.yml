@@ -47,9 +47,12 @@ services:
     container_name: product_app
     build: 
       context: php
+      network: host
 #      dockerfile: ./php/Dockerfile
     volumes:
       - ./src:/var/www
+      - ./supervisor/laravel-worker.conf:/etc/supervisor/conf.d/my-supervisor.conf
+      - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
     ports:
       - "9000:9000"
     working_dir: /var/www

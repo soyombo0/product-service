@@ -20,6 +20,7 @@
         "league/flysystem-aws-s3-v3": "^3.0",
         "php-amqplib/php-amqplib": "^2.0",
         "predis/predis": "^2.2",
+        "pusher/pusher-php-server": "^7.2",
         "socialiteproviders/telegram": "^4.1",
         "socialiteproviders/zoho": "^4.1"
     },

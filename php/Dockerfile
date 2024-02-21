@@ -30,7 +30,8 @@ RUN apt-get -y install --fix-missing \
     libmcrypt-dev \
     libicu-dev \
     libonig-dev \
-    libxml2-dev
+    libxml2-dev \
+    supervisor
 
 # RUN echo "\e[1;33mInstall important docker dependencies\e[0m"
 # RUN docker-php-ext-install \
@@ -53,3 +54,4 @@ RUN apt-get -y install --fix-missing \
 RUN apt-get install -y libpq-dev \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo pdo_pgsql pgsql
+

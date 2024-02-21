@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\V1\ChatController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\CreatePost;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,3 +13,7 @@ use App\Livewire\CreatePost;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/chat', [ChatController::class, 'index']);
+Route::post('/broadcast', [ChatController::class, 'broadcast']);
+Route::post('/receive', [ChatController::class, 'receive']);

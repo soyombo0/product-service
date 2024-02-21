@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\API\V1\AuthController;
-use App\Http\Controllers\API\V1\ChatController;
 use App\Http\Controllers\API\V1\OAuthController;
 use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Routing\Router;
